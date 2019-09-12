@@ -39,3 +39,11 @@ void vetor_free(Vetor* v){
     free(v->vetor);
     free(v);
 }
+
+void vetor_print(Vetor* m){
+    printf("[");
+    for(int i=0;i<m->length;i++)
+        if(i != m->length - 1) printf("%d,",m->vetor[i]);
+        else printf("%d",m->vetor[i]);
+    printf("]\n");
+}
