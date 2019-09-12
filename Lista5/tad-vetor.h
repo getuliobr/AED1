@@ -1,7 +1,10 @@
+#include <stdlib.h>
+#define TAMANHO_INICIAL 5
+
 typedef struct{
     int* vetor;
-    int size;
-    int length;
+    int size;   //tamanho total do vetor
+    int length; //qntde de elementos usados
 } Vetor;
 
 typedef int DataType;
@@ -23,3 +26,11 @@ void vetor_set(Vetor* v, int index, DataType valor);
 void vetor_map(Vetor* v, void (*funcao)(DataType*));
 Vetor* vetor_sub1(Vetor* v, int index);
 Vetor* vetor_sub2(Vetor* v, int start, int end);
+
+Vetor* vetor_new(){
+    Vetor *vetor = (Vetor *)malloc(sizeof(Vetor));
+    vetor->vetor = (DataType *)calloc(TAMANHO_INICIAL,sizeof(DataType));
+    vetor->length = 0;
+    vetor->size = 5;
+    return vetor;
+}
