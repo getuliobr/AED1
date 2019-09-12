@@ -8,6 +8,8 @@ int main(){
     vetor_insert(v,5,2);
     vetor_insert(v,5,3);
     vetor_insert(v,5,4);
-
+    vetor_insert(v,5,5);
+    vetor_insert(v,5,6);
+    vetor_print(v);
     vetor_free(v);
 }
