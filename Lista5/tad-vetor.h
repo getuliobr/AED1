@@ -67,6 +67,8 @@ Boolean vetor_insert(Vetor* v, DataType element, int index){
 }
 
 Boolean vetor_add(Vetor* v, DataType element){
-    
+    int index = v->length++;
+    if(index==(v->size-1)) vetor_doubleSize(v);
+    v->vetor[index] = element;
     return true;
 }
