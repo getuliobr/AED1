@@ -13,7 +13,7 @@ typedef enum {false, true} Boolean;
 
 Vetor* vetor_new(); // pronto
 void vetor_free(Vetor* v); //pronto
-void vetor_print(Vetor* m);
+void vetor_print(Vetor* m); //pronto
 Boolean vetor_insert(Vetor* v, DataType element, int index);
 Boolean vetor_add(Vetor* v, DataType element);
 DataType vetor_remove1(Vetor* v, int index);
@@ -46,4 +46,10 @@ void vetor_print(Vetor* m){
         if(i != m->length - 1) printf("%d,",m->vetor[i]);
         else printf("%d",m->vetor[i]);
     printf("]\n");
+}
+
+Boolean vetor_insert(Vetor* v, DataType element, int index){
+    if(index>v->size) return false;
+    v->vetor[index] = element;
+    return true;
 }
