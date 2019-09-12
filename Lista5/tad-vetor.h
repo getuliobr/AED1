@@ -59,8 +59,9 @@ void vetor_doubleSize(Vetor* v){
 }
 
 Boolean vetor_insert(Vetor* v, DataType element, int index){
-    if(index>v->length || index<0) return false;
-    if(index==(v->size-1)) vetor_doubleSize(v); 
+    if(index>(v->length+1) || index<0) return false;
+    if(index==(v->size-1)) vetor_doubleSize(v);
+    if(index==v->length) v->length += 1;
     v->vetor[index] = element;
     return true;
 }
