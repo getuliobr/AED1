@@ -49,6 +49,16 @@ void vetor_print(Vetor* m){
     printf("]\n");
 }
 
+void vetor_doubleSize(Vetor* v){
+    v->size *= 2;
+    DataType* vetorAux = (DataType *)calloc(v->size,sizeof(DataType)); 
+    for(int i=0;i<v->length;i++)
+        vetorAux[i] = v->vetor[i];
+    free(v->vetor);
+    v->vetor = vetorAux;
+    free(vetorAux);
+}
+
 Boolean vetor_insert(Vetor* v, DataType element, int index){
     if(index>v->length || index<0) return false;
     if(index==(v->size-1)) vetor_doubleSize(v); 
