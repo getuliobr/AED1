@@ -56,7 +56,6 @@ void vetor_doubleSize(Vetor* v){
         vetorAux[i] = v->vetor[i];
     free(v->vetor);
     v->vetor = vetorAux;
-    free(vetorAux);
 }
 
 Boolean vetor_insert(Vetor* v, DataType element, int index){
