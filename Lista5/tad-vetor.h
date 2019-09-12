@@ -11,8 +11,8 @@ typedef int DataType;
 
 typedef enum {false, true} Boolean;
 
-Vetor* vetor_new();
-void vetor_free(Vetor* v);
+Vetor* vetor_new(); // pronto
+void vetor_free(Vetor* v); //pronto
 void vetor_print(Vetor* m);
 Boolean vetor_insert(Vetor* v, DataType element, int index);
 Boolean vetor_add(Vetor* v, DataType element);
@@ -33,4 +33,9 @@ Vetor* vetor_new(){
     vetor->length = 0;
     vetor->size = 5;
     return vetor;
+}
+
+void vetor_free(Vetor* v){
+    free(v->vetor);
+    free(v);
 }
