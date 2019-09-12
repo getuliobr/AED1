@@ -16,7 +16,7 @@ void vetor_free(Vetor* v); //pronto
 void vetor_print(Vetor* m); //pronto
 void vetor_doubleSize(Vetor* v);//pronto
 Boolean vetor_insert(Vetor* v, DataType element, int index);//pronto
-Boolean vetor_add(Vetor* v, DataType element);
+Boolean vetor_add(Vetor* v, DataType element);//pronto
 DataType vetor_remove1(Vetor* v, int index);
 Boolean vetor_remove2(Vetor* v, int index, DataType* ptr);
 DataType vetor_shift1(Vetor* v);
