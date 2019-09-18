@@ -135,6 +135,18 @@ Boolean vetor_shift2(Vetor* v, DataType* ptr){
     return true;
 }
 
-DataType vetor_get1(Vetor* v, int index);
-Boolean vetor_get2(Vetor* v, int index, DataType *ptr);
-DataType* vetor_get3(Vetor* v, int index);
+DataType vetor_get1(Vetor* v, int index){
+    if(index < 0 || index > v->length || v->length == 0) return -9995;
+    return v->vetor[index];
+}
+Boolean vetor_get2(Vetor* v, int index, DataType *ptr){
+    if(index < 0 || index > v->length || v->length == 0) return false;
+    *ptr = v->vetor[index];
+    return true;
+}
+DataType* vetor_get3(Vetor* v, int index){
+    DataType* saida;
+    if(index < 0 || index > v->length || v->length == 0) saida = &v->vetor[v->length-1];
+    else saida = &v->vetor[index];
+    return saida;
+}
