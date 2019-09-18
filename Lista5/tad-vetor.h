@@ -26,7 +26,7 @@ DataType vetor_get1(Vetor* v, int index);//pronto
 Boolean vetor_get2(Vetor* v, int index, DataType *ptr);//pronto
 DataType* vetor_get3(Vetor* v, int index);//pronto
 Boolean vetor_set(Vetor* v, int index, DataType valor);//pronto
-void vetor_map(Vetor* v, void (*funcao)(DataType*));
+void vetor_map(Vetor* v, void (*funcao)(DataType*));//pronto
 Vetor* vetor_sub1(Vetor* v, int index);
 Vetor* vetor_sub2(Vetor* v, int start, int end);
 
@@ -164,3 +164,6 @@ void vetor_map(Vetor* v, void (*funcao)(DataType*)){
         funcao(&v->vetor[i]);
     }
 }
+
+Vetor* vetor_sub1(Vetor* v, int index);
+Vetor* vetor_sub2(Vetor* v, int start, int end);

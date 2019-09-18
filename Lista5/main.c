@@ -1,6 +1,10 @@
 #include <stdio.h>
 #include "tad-vetor.h"
 
+void timesTwo(DataType* input){
+    *input *= 2;
+}
+
 int main(){
     Vetor *v = vetor_new();
     /*
@@ -28,6 +32,7 @@ int main(){
     printf("%d\n",vetor_shift1(v));
     DataType* teste = vetor_get3(v,-10);
     printf("%d\n",*teste);
+    vetor_map(v,timesTwo);
     vetor_print(v);
     vetor_free(v);
 }
