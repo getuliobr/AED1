@@ -7,7 +7,6 @@ void timesTwo(DataType* input){
 
 int main(){
     Vetor *v = vetor_new();
-    /*
     vetor_insert(v,1,0);
     vetor_insert(v,2,1);
     vetor_insert(v,3,2);
@@ -16,7 +15,6 @@ int main(){
     vetor_insert(v,6,5);
     vetor_insert(v,7,6);
     vetor_insert(v,8,8);
-    */
     vetor_add(v,1);
     vetor_add(v,2);
     vetor_add(v,3);
@@ -34,5 +32,7 @@ int main(){
     printf("%d\n",*teste);
     vetor_map(v,timesTwo);
     vetor_print(v);
+    vetor_print(vetor_sub1(v,-2));
+    vetor_print(vetor_sub2(v,-3,-1));
     vetor_free(v);
 }

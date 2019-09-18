@@ -27,8 +27,9 @@ Boolean vetor_get2(Vetor* v, int index, DataType *ptr);//pronto
 DataType* vetor_get3(Vetor* v, int index);//pronto
 Boolean vetor_set(Vetor* v, int index, DataType valor);//pronto
 void vetor_map(Vetor* v, void (*funcao)(DataType*));//pronto
-Vetor* vetor_sub1(Vetor* v, int index);
-Vetor* vetor_sub2(Vetor* v, int start, int end);
+Vetor* vetor_sub1(Vetor* v, int index);//pronto
+Vetor* vetor_sub2(Vetor* v, int start, int end);//pronto
+int vetor_size(Vetor* v);//pronto
 
 Vetor* vetor_new(){
     Vetor *vetor = (Vetor *)malloc(sizeof(Vetor));
@@ -165,5 +166,25 @@ void vetor_map(Vetor* v, void (*funcao)(DataType*)){
     }
 }
 
-Vetor* vetor_sub1(Vetor* v, int index);
-Vetor* vetor_sub2(Vetor* v, int start, int end);
+Vetor* vetor_sub1(Vetor* v, int index){
+    if(index<0) index += v->length;
+    Vetor* saida = vetor_new();
+    for(int i=index;i<v->length && index != (v->length-1);i++){
+        vetor_add(saida,v->vetor[i]);
+    }
+    return saida;
+}
+
+Vetor* vetor_sub2(Vetor* v, int start, int end){
+    if(start<0) start += v->length;
+    if(end<0) end += v->length;
+    Vetor* saida = vetor_new();
+    for(int i=start;i<=end && start != (v->length-1);i++){
+        vetor_add(saida,v->vetor[i]);
+    }
+    return saida;
+}
+
+int vetor_size(Vetor* v){
+    return v->size;
+}
