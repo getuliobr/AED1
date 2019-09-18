@@ -35,7 +35,7 @@ Vetor* vetor_new(){
     Vetor *vetor = (Vetor *)malloc(sizeof(Vetor));
     vetor->vetor = (DataType *)calloc(TAMANHO_INICIAL,sizeof(DataType));
     vetor->length = 0;
-    vetor->size = 5;
+    vetor->size = TAMANHO_INICIAL;
     return vetor;
 }
 
@@ -78,7 +78,7 @@ Boolean vetor_add(Vetor* v, DataType element){
 
 void usedSpace(Vetor* v){
     if(v->length < v->size/4){
-        if(v->size > 5){
+        if(v->size > TAMANHO_INICIAL){
             int size = v->size/2;
             v->size = size;
         }
