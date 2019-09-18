@@ -22,5 +22,9 @@ int main(){
     vetor_add(v,7);
     vetor_add(v,8);
     vetor_print(v);
+    printf("%d\n",vetor_remove1(v,0));
+    printf("%d\n",vetor_remove1(v,0));
+    printf("%d\n",vetor_remove1(v,0));
+    vetor_print(v);
     vetor_free(v);
 }

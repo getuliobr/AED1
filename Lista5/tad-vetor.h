@@ -12,13 +12,14 @@ typedef int DataType;
 typedef enum {false, true} Boolean;
 
 Vetor* vetor_new(); // pronto
+void usedSpace(Vetor* v);
 void vetor_free(Vetor* v); //pronto
 void vetor_print(Vetor* m); //pronto
 void vetor_doubleSize(Vetor* v);//pronto
 Boolean vetor_insert(Vetor* v, DataType element, int index);//pronto
 Boolean vetor_add(Vetor* v, DataType element);//pronto
-DataType vetor_remove1(Vetor* v, int index);
-Boolean vetor_remove2(Vetor* v, int index, DataType* ptr);
+DataType vetor_remove1(Vetor* v, int index);//pronto
+Boolean vetor_remove2(Vetor* v, int index, DataType* ptr);//pronto
 DataType vetor_shift1(Vetor* v);
 Boolean vetor_shift2(Vetor* v, DataType* ptr);
 DataType vetor_get1(Vetor* v, int index);
@@ -70,5 +71,41 @@ Boolean vetor_add(Vetor* v, DataType element){
     int index = v->length++;
     if(index==(v->size-1)) vetor_doubleSize(v);
     v->vetor[index] = element;
+    return true;
+}
+
+void usedSpace(Vetor* v){
+    if(v->length < v->size/4){
+        if(v->size > 5){
+            int size = v->size/2;
+            v->size = size;
+        }
+        DataType* vetorAux = (DataType *)calloc(v->size,sizeof(DataType)); 
+        for(int i=0;i<v->length;i++)
+            vetorAux[i] = v->vetor[i];
+        free(v->vetor);
+        v->vetor = vetorAux;
+    }
+}
+
+DataType vetor_remove1(Vetor* v, int index){
+    if(index < 0 || index >= v->length || v->length == 0) return -9995;
+    DataType ptr = v->vetor[index];
+    v->length--;
+    for(int i=index;i<v->length;i++){
+        v->vetor[i] = v->vetor[i + 1];
+    }
+    usedSpace(v);
+    return ptr;
+}
+
+Boolean vetor_remove2(Vetor* v, int index, DataType* ptr){
+    if(index < 0 || index > v->length || v->length == 0) return false;
+    *ptr = v->vetor[index];
+    v->length--;
+    for(int i=index;i<v->length;i++){
+        v->vetor[i] = v->vetor[i + 1];
+    }
+    usedSpace(v);
     return true;
 }
