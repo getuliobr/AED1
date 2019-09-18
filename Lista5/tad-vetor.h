@@ -20,10 +20,11 @@ Boolean vetor_insert(Vetor* v, DataType element, int index);//pronto
 Boolean vetor_add(Vetor* v, DataType element);//pronto
 DataType vetor_remove1(Vetor* v, int index);//pronto
 Boolean vetor_remove2(Vetor* v, int index, DataType* ptr);//pronto
-DataType vetor_shift1(Vetor* v);
-Boolean vetor_shift2(Vetor* v, DataType* ptr);
+DataType vetor_shift1(Vetor* v);//pronto
+Boolean vetor_shift2(Vetor* v, DataType* ptr);//pronto
 DataType vetor_get1(Vetor* v, int index);
 Boolean vetor_get2(Vetor* v, int index, DataType *ptr);
+DataType* vetor_get3(Vetor* v, int index);
 void vetor_set(Vetor* v, int index, DataType valor);
 void vetor_map(Vetor* v, void (*funcao)(DataType*));
 Vetor* vetor_sub1(Vetor* v, int index);
@@ -109,3 +110,31 @@ Boolean vetor_remove2(Vetor* v, int index, DataType* ptr){
     usedSpace(v);
     return true;
 }
+
+DataType vetor_shift1(Vetor* v){
+    int index = 0;
+    if(v->length == 0) return -9995;
+    DataType ptr = v->vetor[index];
+    v->length--;
+    for(int i=index;i<v->length;i++){
+        v->vetor[i] = v->vetor[i + 1];
+    }
+    usedSpace(v);
+    return ptr;
+}
+
+Boolean vetor_shift2(Vetor* v, DataType* ptr){
+    int index = 0;
+    if(v->length == 0) return false;
+    *ptr = v->vetor[index];
+    v->length--;
+    for(int i=index;i<v->length;i++){
+        v->vetor[i] = v->vetor[i + 1];
+    }
+    usedSpace(v);
+    return true;
+}
+
+DataType vetor_get1(Vetor* v, int index);
+Boolean vetor_get2(Vetor* v, int index, DataType *ptr);
+DataType* vetor_get3(Vetor* v, int index);

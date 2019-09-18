@@ -24,7 +24,9 @@ int main(){
     vetor_print(v);
     printf("%d\n",vetor_remove1(v,0));
     printf("%d\n",vetor_remove1(v,0));
-    printf("%d\n",vetor_remove1(v,0));
+    printf("%d\n",vetor_shift1(v));
+    printf("%d\n",vetor_shift1(v));
+
     vetor_print(v);
     vetor_free(v);
 }
