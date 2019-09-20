@@ -75,7 +75,6 @@ int comparaProdutoPreco(void* a, void* b){
     Produto* x = (Produto*)a; //100
     Produto* y = (Produto*)b; //104
     if(x->preco > y->preco) return 1;
-    else if(x->preco < y->preco) return -1;
     else return 0;
 }
 /**************************************
