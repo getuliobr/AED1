@@ -31,8 +31,8 @@ Vetor* vetor_sub1(Vetor* v, int index);//pronto
 Vetor* vetor_sub2(Vetor* v, int start, int end);//pronto
 int vetor_size(Vetor* v);//pronto
 Vetor* vetor_filter(Vetor* v, Boolean (*funcao)(DataType*));//pronto
-void vetor_sort(Vetor* v);
-void vetor_genericSort(Vetor* v, int (*pfuncao)(DataType* a, DataType* b));
+void vetor_sort(Vetor* v);//pronto
+void vetor_genericSort(Vetor* v, int (*pfuncao)(DataType* a, DataType* b));//pronto
 
 Vetor* vetor_new(){
     Vetor *vetor = (Vetor *)malloc(sizeof(Vetor));
