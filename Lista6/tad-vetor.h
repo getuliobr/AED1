@@ -193,9 +193,9 @@ int vetor_size(Vetor* v){
 }
 
 Vetor* vetor_filter(Vetor* v, Boolean (*funcao)(DataType*)){
-    DataType* out = vetor_new();
+    Vetor* out = vetor_new();
     for(int i=0;i<v->length;i++){
-        if(funcao(v->vetor[i])) vetor_add(out,v->vetor[i]);
+        if(funcao(&(v->vetor[i]))) vetor_add(out,v->vetor[i]);
     }
     return out;
 }
