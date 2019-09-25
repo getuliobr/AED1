@@ -12,6 +12,18 @@ Boolean ehImpar(DataType* ptr){
 return (*ptr % 2 == 0 ? false : true);
 }
 
+int comparaMaiorMenor(DataType* a, DataType* b){
+    if(*a < *b) return 1;
+    else if (*a > *b) return -1;
+    else return 0;
+}
+
+int comparaMenorMaior(DataType* a, DataType* b){
+    if(*a > *b) return 1;
+    else if (*a < *b) return -1;
+    else return 0;
+}
+
 int main(){
     Vetor *v = vetor_new();
     vetor_add(v,0);
@@ -23,7 +35,10 @@ int main(){
     vetor_add(v,4);
     vetor_add(v,2);
     vetor_print(v);
-    vetor_sort(v);
+    //vetor_sort(v);
+    vetor_genericSort(v,comparaMaiorMenor);
+    vetor_print(v);
+    vetor_genericSort(v,comparaMenorMaior);
     vetor_print(v);
 
     Vetor *teste = vetor_filter(v,ehPar);

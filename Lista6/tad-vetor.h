@@ -214,3 +214,18 @@ void vetor_sort(Vetor* v){
         if(!troca) return;
     }
 }
+
+void vetor_genericSort(Vetor* v, int (*pfuncao)(DataType* a, DataType* b)){
+    for(int fim=v->length-1;fim>0;fim--){
+        Boolean troca = false;
+        for(int i=0;i<fim;i++){
+            if(pfuncao(&(v->vetor[i]),&(v->vetor[i+1]))==1){
+                DataType aux = v->vetor[i];
+                v->vetor[i] = v->vetor[i+1];
+                v->vetor[i+1] = aux;
+                troca = true;
+            }
+        }
+        if(!troca) return;
+    }
+}
