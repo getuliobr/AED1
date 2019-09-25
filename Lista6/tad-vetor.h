@@ -30,7 +30,7 @@ void vetor_map(Vetor* v, void (*funcao)(DataType*));//pronto
 Vetor* vetor_sub1(Vetor* v, int index);//pronto
 Vetor* vetor_sub2(Vetor* v, int start, int end);//pronto
 int vetor_size(Vetor* v);//pronto
-Vetor* vetor_filter(Vetor* v, Boolean (*funcao)(DataType*));
+Vetor* vetor_filter(Vetor* v, Boolean (*funcao)(DataType*));//pronto
 void vetor_sort(Vetor* v);
 void vetor_genericSort(Vetor* v, int (*pfuncao)(DataType* a, DataType* b));
 
@@ -198,4 +198,19 @@ Vetor* vetor_filter(Vetor* v, Boolean (*funcao)(DataType*)){
         if(funcao(&(v->vetor[i]))) vetor_add(out,v->vetor[i]);
     }
     return out;
+}
+
+void vetor_sort(Vetor* v){
+    for(int fim=v->length-1;fim>0;fim--){
+        Boolean troca = false;
+        for(int i=0;i<fim;i++){
+            if(v->vetor[i] > v->vetor[i+1]){
+                DataType aux = v->vetor[i];
+                v->vetor[i] = v->vetor[i+1];
+                v->vetor[i+1] = aux;
+                troca = true;
+            }
+        }
+        if(!troca) return;
+    }
 }
