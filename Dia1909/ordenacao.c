@@ -69,7 +69,7 @@ void bubble_generico(void* v, int n, int tamElemento, int (*funcaoCompara)(void*
     for (fim = n-1; fim>0; fim--) {
         int houve_troca = 0;
         for (i=0; i<fim; i++){
-            if (funcaoCompara(v + i*tamElemento, v + (i+1)*tamElemento)) {
+            if (funcaoCompara(v + i*tamElemento, v + (i+1)*tamElemento)>0) {
                 trocaGenerica(v + i*tamElemento, v + (i+1)*tamElemento,tamElemento);
                 houve_troca = 1;
             }
