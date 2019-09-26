@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 
 typedef struct{
     int cod;
@@ -9,12 +10,10 @@ typedef struct{
 
 void printVetorGenerico(void* vetor, int tamanho,int tamanhoTipo, void (*print)(void* a)){
     printf("[");
-    for(int i=0;i<tamanho;i++)
-        if(i != tamanho - 1){
-            print(vetor + i*tamanhoTipo);
-            printf(",");
-        }
-        else print(vetor + i*tamanhoTipo);
+    for(int i=0;i<tamanho;i++){
+        print(vetor + i*tamanhoTipo);
+        if(i != tamanho - 1) printf(",");
+    }
     printf("]\n");
 }
 
@@ -29,30 +28,6 @@ void printChar(void *a){
 void printProduto(void *a){
     Produto* produto = (Produto*)a;
     printf("{\"cod\":%d ,\"nome\":%s ,\"preco\":%.2f}",produto->cod,produto->nome,produto->preco);
-}
-
-void trocaInt(void* a, void* b){
-    int* x = (int*)a;
-    int* y = (int*)b;
-    int temp = *x;
-    *x = *y;
-    *y = temp;
-}
-
-void trocaChar(void* a, void* b){
-    char* x = (char*)a;
-    char* y = (char*)b;
-    char temp = *x;
-    *x = *y;
-    *y = temp;
-}
-
-void trocaProduto(void* a, void* b){
-    Produto* x = (Produto*)a;
-    Produto* y = (Produto*)b;
-    Produto temp = *x;
-    *x = *y;
-    *y = temp;
 }
 
 /**************************************
@@ -81,13 +56,21 @@ int comparaProdutoPreco(void* a, void* b){
  * BUBBLE SORT GENÉRICO
  * ************************************/
 
-void bubble_generico(void* v, int n, int tamElemento, int (*funcaoCompara)(void* a, void* b), void (*troca)(void* a, void* b)){
+void trocaGenerica(void* a, void* b, int tamElemento){
+    void* temp = malloc(tamElemento);
+    memcpy(temp,a,tamElemento);
+    memcpy(a,b,tamElemento);
+    memcpy(b,temp,tamElemento);
+    free(temp);
+}
+
+void bubble_generico(void* v, int n, int tamElemento, int (*funcaoCompara)(void* a, void* b)){
     int i, fim;
     for (fim = n-1; fim>0; fim--) {
         int houve_troca = 0;
         for (i=0; i<fim; i++){
             if (funcaoCompara(v + i*tamElemento, v + (i+1)*tamElemento)) {
-                troca(v + i*tamElemento, v + (i+1)*tamElemento);
+                trocaGenerica(v + i*tamElemento, v + (i+1)*tamElemento,tamElemento);
                 houve_troca = 1;
             }
         }
@@ -110,10 +93,10 @@ int main(){
         {2,"222",2.2}
     };
 
-    bubble_generico(v1, 8, sizeof(int), comparaInt, trocaInt);
+    bubble_generico(v1, 8, sizeof(int), comparaInt);
     printVetorGenerico(v1,8,sizeof(int),printInt);
-    bubble_generico(vet_char, 5, sizeof(char), comparaChar, trocaChar);
+    bubble_generico(vet_char, 5, sizeof(char), comparaChar);
     printVetorGenerico(vet_char,5,sizeof(char),printChar);
-    bubble_generico(vp,5,sizeof(Produto),comparaProdutoPreco,trocaProduto);
+    bubble_generico(vp,5,sizeof(Produto),comparaProdutoPreco);
     printVetorGenerico(vp,5,sizeof(Produto),printProduto);
 }
