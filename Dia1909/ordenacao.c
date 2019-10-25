@@ -17,6 +17,23 @@ void printVetorGenerico(void* vetor, int tamanho,int tamanhoTipo, void (*print)(
     printf("]\n");
 }
 
+void* funcao1(void* v, int i, int tam){
+    char* c = (char*) v + (tam*i);
+    return (void*)c;
+}
+
+void funcao2(void *a, void *b, int tam){
+    char* v1 = (char*) a;
+    char* v2 = (char*) b;
+    int i;
+    for(i=0; i<tam; i++){
+        char temp = *(v1 + i);
+        *(v1+i) = *(v2+i);
+        *(v2+i) = temp;
+    }
+}
+
+
 void printInt(void *a){
     printf("%d",*((int*)a));
 }
@@ -83,20 +100,15 @@ void bubble_generico(void* v, int n, int tamElemento, int (*funcaoCompara)(void*
  * ************************************/
 
 int main(){
-    int v1[8] = {25,25,37,12,57,86,33,92};
-    char vet_char[5] = {'d','a', 'e', 'a', 'c'};
-        Produto vp[5] = { // 300
-        {5,"555",5.5},
-        {1,"111",1.1},
-        {4,"444",4.4},
-        {3,"333",3.3},
-        {2,"222",2.2}
-    };
+    char v[8] = {'a','b','c','d','e','f','g','h'};
+    void* p1 = funcao1(v,3,2);
+    void* p2 = funcao1(v,0,5);
+    funcao2(p1,p2,2);
+    p1 = funcao1(v,5,1);
+    p2 = funcao1(v,1,2);
 
-    bubble_generico(v1, 8, sizeof(int), comparaInt);
-    printVetorGenerico(v1,8,sizeof(int),printInt);
-    bubble_generico(vet_char, 5, sizeof(char), comparaChar);
-    printVetorGenerico(vet_char,5,sizeof(char),printChar);
-    bubble_generico(vp,5,sizeof(Produto),comparaProdutoPreco);
-    printVetorGenerico(vp,5,sizeof(Produto),printProduto);
+    funcao2(p1,p2,1);
+    printf("%c %c\n",*((char*) p1),*((char*) p2));
+
+    printVetorGenerico(v,8,sizeof(char),printChar);
 }
