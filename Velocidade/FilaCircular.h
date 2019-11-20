@@ -26,10 +26,10 @@ int fila_contem(Fila* f, Tipo elemento);
 void fila_imprimir(Fila* f);
 
 
-Fila* fila_criar(){
+Fila* fila_criar(int tam){
     Fila* saida = (Fila *)malloc(sizeof(Fila));
-    Tipo* vetor = (Tipo *)calloc(5,sizeof(Tipo));
-    saida->tam = TAMANHO;
+    Tipo* vetor = (Tipo *)calloc(tam,sizeof(Tipo));
+    saida->tam = tam;
     saida->vetor = vetor;
     saida->inicio = 0;
     saida->fim = 0;
@@ -70,7 +70,16 @@ void metadeTamanho(Fila* f){
 
 Boolean fila_inserir(Fila* f, Tipo elemento){
     if((f->inicio%f->tam == f->fim%f->tam) && (f->inicio != f->fim)) duplicarTamanho(f);
-    f->vetor[f->fim++%f->tam] = elemento;
+    int i=f->inicio;
+    for(i=f->inicio;i<f->fim;i++){
+        if(elemento>f->vetor[i%f->tam])
+            break;
+    }
+    for(int j=f->fim;j>i;j--){
+        f->vetor[j%f->tam] = f->vetor[(j-1)%f->tam];
+    }
+    f->vetor[i%f->tam] = elemento;
+    f->fim++;
     return true;
 }
 
