@@ -253,6 +253,7 @@ int vetor_import(Vetor* v, char* nomeArquivo){
                 num=0;
             }
         }
+    if(numbers > 0) vetor_add(v,num);
     fclose(fp);
     }
     return numbers;
