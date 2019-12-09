@@ -106,6 +106,7 @@ int matriz_atribuir(Matriz* m, int linha, int coluna, int valor){
 }
 
 int matriz_acessar(Matriz* m, int linha, int coluna){
+    if(linha < 0 || coluna < 0 || linha >= m->numLinhas || coluna >= m->colunas || m == NULL) return 0;
     Node* aux = m->linhas[linha]->direita;
     for(int i=0;i<m->linhas[linha]->valor;i++){
         if(aux->coluna == coluna) return aux->valor;
